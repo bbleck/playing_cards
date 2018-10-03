@@ -41,7 +41,6 @@ public class Trick {
   }
 
   private void swapCards(int nCards) {
-    int tempNCards = nCards;
     List<Card> tempHolderRed = new ArrayList<>();
     List<Card> tempHolderBlack = new ArrayList<>();
     for (int i = 0; i < nCards; i++) {
@@ -49,18 +48,16 @@ public class Trick {
       tempHolderBlack.add(blackPile.remove(i));
       nCards--;
     }
-    for (int i = 0; i < tempHolderRed.size(); i++) {
-      blackPile.add(tempHolderRed.remove(i));
-    }
-    for (int i = 0; i < tempHolderBlack.size(); i++) {
-      redPile.add(tempHolderBlack.remove(i));
-    }
+    blackPile.addAll(tempHolderRed);
+    redPile.addAll(tempHolderBlack);
 
   }
 
 
 
   private void countCards() {
+    System.out.printf("Red pile: %s%n", redPile);
+    System.out.printf("Black pile: %s%n", blackPile);
     long redCount = redPile.parallelStream().filter((c) -> c.getSuit().getColor() == Color.RED).count();
     long blackCount = blackPile.parallelStream().filter((c) -> c.getSuit().getColor() == Color.BLACK).count();
     System.out.println("Reds in Red Pile: " + redCount);
