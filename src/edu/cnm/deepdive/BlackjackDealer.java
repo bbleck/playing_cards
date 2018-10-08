@@ -32,6 +32,6 @@ public class BlackjackDealer implements Comparator<BlackjackHand>{
 
   @Override
   public int compare(BlackjackHand o1, BlackjackHand o2) {
-    return 0;
+    return o1.compareTo(o2);
   }
 }
